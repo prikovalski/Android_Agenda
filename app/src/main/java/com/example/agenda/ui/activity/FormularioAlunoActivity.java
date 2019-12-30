@@ -2,6 +2,7 @@ package com.example.agenda.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.agenda.R;
+import com.example.agenda.dao.AlunoDAO;
 import com.example.agenda.model.Aluno;
 
 public class FormularioAlunoActivity extends AppCompatActivity {
@@ -18,6 +20,8 @@ public class FormularioAlunoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_aluno);
+
+        final AlunoDAO dao = new AlunoDAO();
 
         final EditText campo_Nome = findViewById(R.id.activity_formulario_aluno_nome);
         final EditText campo_Telefone = findViewById(R.id.activity_formulario_aluno_telefone);
@@ -31,14 +35,10 @@ public class FormularioAlunoActivity extends AppCompatActivity {
                 String telefone = campo_Telefone.getText().toString();
                 String email = campo_Email.getText().toString();
 
-                Aluno aluno = new Aluno(nome,telefone,email);
+                Aluno alunoCriado = new Aluno(nome,telefone,email);
+                dao.salva(alunoCriado);
 
-                Toast.makeText(FormularioAlunoActivity.this
-                        ,aluno.getNome() + " - " +
-                                aluno.getTelefone() + " - " +
-                                aluno.getEmail()
-                        ,Toast.LENGTH_SHORT
-                        ).show();
+                finish();
             }
         });
     }
