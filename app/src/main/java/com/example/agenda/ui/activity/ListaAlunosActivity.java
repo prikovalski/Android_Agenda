@@ -37,23 +37,22 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setTitle(TITULO_APP_BAR);
         configuraFabNovoAluno();
         configuraLista();
-        dao.salva(new Aluno("AAAA","111","a@a"));
-        dao.salva(new Aluno("BBB","222","b@a"));
-
+        dao.salva(new Aluno("AAAA", "111", "a@a"));
+        dao.salva(new Aluno("BBB", "222", "b@a"));
     }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater()
-                .inflate(R.menu.activity_lista_alunos_menu,menu);
+                .inflate(R.menu.activity_lista_alunos_menu, menu);
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
         int itemId = item.getItemId();
-        if(itemId == R.id.activity_lista_alunos_menu_remover){
+        if (itemId == R.id.activity_lista_alunos_menu_remover) {
             AdapterView.AdapterContextMenuInfo menuInfo =
                     (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
             Aluno alunoEscolhido = adapter.getItem(menuInfo.position);
@@ -74,7 +73,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     }
 
     private void abreFormularioModoInsereAluno() {
-        startActivity(new Intent(this,  FormularioAlunoActivity.class));
+        startActivity(new Intent(this, FormularioAlunoActivity.class));
     }
 
     @Override
@@ -114,7 +113,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private void abreFormularioModoEditaAluno(Aluno aluno) {
         Intent vaiParaFormularioActivity = new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class);
-        vaiParaFormularioActivity.putExtra(CHAVE_ALUNO,aluno);
+        vaiParaFormularioActivity.putExtra(CHAVE_ALUNO, aluno);
         startActivity(vaiParaFormularioActivity);
     }
 
